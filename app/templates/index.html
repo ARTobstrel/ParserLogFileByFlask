@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mx-auto">Apache server</h1>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <form method="POST" action="{{ url_for('index') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="form-col">
+                        <input type="file" name="file" class="form-control-file">
+                    </div>
+                    <div class="form-col">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row mt-5 mx-auto text-center">
+    {% for elem in ips %}
+    <div class="col-6">{{ elem['ip'] }} - {{ elem['frequency'] }}</div>
+    {% endfor %}
+</div>
+
+<div class="row mt-5 mx-auto text-center">
+    {% for elem in ips %}
+    <div class="col-12">Deny from {{ elem['ip'] }}</div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
